@@ -1,4 +1,4 @@
-group 'com.zzz.mybatis'
+group 'com.z.mybatis'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -7,6 +7,12 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+// 创建src目录
+task "create-dirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
 }
 
 // 将资源文件打包
