@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.z.mybatis.mapper.EmployeeMapper">
+
+
+    <resultMap id="empMapper" type="emp">
+
+        <association property="dept" column="dept_id"
+                     select="com.z.mybatis.mapper.DeptMapper.findById"/>
+
+    </resultMap>
+
+
+    <select id="findAll" resultMap="empMapper">
+        select * from employee as a,dept as b
+          where a.dept_id = b.dept_id
+    </select>
+
+    <select id="findById" resultMap="empMapper" parameterType="long">
+        select * from employee where id=#{id}
+    </select>
+
+    <select id="findEmpByDeptId" resultType="emp" parameterType="long">
+        select * from employee where dept_id=#{deptId}
+    </select>
+
+</mapper>

@@ -35,6 +35,7 @@
     <!-- mapper 接口所在的包，mybatis会自动扫描查找 也可以使用 mapper 单独指定 -->
     <mappers>
         <package name="com.z.mybatis.mapper"/>
+        <package name="com.z.mybatis.mapper2"/>
     </mappers>
 
 </configuration>

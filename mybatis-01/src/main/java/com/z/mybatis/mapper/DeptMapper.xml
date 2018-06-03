@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 指定当前 mapper 和 Mapper对象的映射关系 -->
+<mapper namespace="com.z.mybatis.mapper.DeptMapper">
+
+    <!-- 因为实体对象中的属性名称和数据库字段名称不一样，通过resultMap来进行映射 -->
+    <resultMap id="deptMapper" type="com.z.mybatis.entity.Dept">
+        <!-- property 实体对象中的属性名称  column 数据库中字段的名称-->
+        <id property="deptId" column="dept_id"/>
+        <result property="deptName" column="dept_name"/>
+        <collection property="employees" column="dept_id"
+                    select="com.z.mybatis.mapper.EmployeeMapper.findEmpByDeptId">
+        </collection>
+    </resultMap>
+
+    <!-- 通过 select 标签进行查询操作，这里查询的是所有信息 -->
+    <select id="findAll" resultMap="deptMapper">
+        select * from dept as a ,employee as b
+        where a.dept_id = b.dept_id
+        order by a.dept_id
+    </select>
+
+    <select id="findById" resultMap="deptMapper" parameterType="long">
+        select * from dept where dept_id=#{id}
+    </select>
+
+    <update id="update" parameterType="dept">
+        update dept set dept_name=#{deptName} where dept_id=#{deptId}
+    </update>
+
+    <insert id="save" parameterType="dept">
+        insert into  dept (dept_name)  values (#{deptName})
+    </insert>
+
+    <delete id="delete" parameterType="long">
+        delete from dept where dept_id=#{id}
+    </delete>
+
+</mapper>
