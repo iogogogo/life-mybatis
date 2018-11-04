@@ -1,6 +1,6 @@
-package com.z.mybatis.entity;
+package com.zz.mybatis.entity;
 
-import com.z.mybatis.util.IdHelper;
+import com.zz.mybatis.util.IdHelper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

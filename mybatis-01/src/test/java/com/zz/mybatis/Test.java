@@ -1,13 +1,16 @@
-package com.z.mybatis.test;
+package com.zz.mybatis;
 
 import com.alibaba.fastjson.JSON;
-import com.z.mybatis.entity.User;
-import com.z.mybatis.mapper.UserMapper;
-import com.z.mybatis.util.IdHelper;
-import com.z.mybatis.util.SqlSessionFactoryUtil;
+import com.zz.mybatis.entity.User;
+import com.zz.mybatis.mapper.UserMapper;
+import com.zz.mybatis.util.IdHelper;
+import com.zz.mybatis.util.SqlSessionFactoryUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -21,7 +24,7 @@ import java.util.List;
  */
 public class Test {
 
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(Test.class);
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private SqlSession sqlSession;
     private UserMapper mapper;
@@ -49,18 +52,19 @@ public class Test {
         System.out.println(JSON.toJSONString(list1));
     }
 
+    @Ignore
     @org.junit.Test
     public void test1() {
-        System.out.println(mapper.findById(6395192397256462336L).getName());
+        System.out.println(mapper.findById(6464683977264336896L).getName());
         System.out.println("*****************************************");
-        System.out.println(mapper.findById(6395192397256462336L).getName());
+        System.out.println(mapper.findById(6464683977264336896L).getName());
     }
 
     @org.junit.Test
     public void test2() {
         User user = new User();
         user.before();
-        user.setName("123");
+        user.setName("user_name" + IdHelper.uuid());
         user.setPassword(IdHelper.uuid());
         int res = mapper.save(user);
         sqlSession.commit();
@@ -70,18 +74,18 @@ public class Test {
     @org.junit.Test
     public void test3() {
         User user = new User();
-        user.setId(6408303361833046016L);
+        user.setId(6464683977264336896L);
         user.setPassword(IdHelper.uuid());
         int res = mapper.update(user);
-        log.info("修改结果:{}", res);
+        logger.info("修改结果:{}", res);
         sqlSession.commit();
-        assert res > 0;
+        logger.info("result:", res > 0);
     }
 
     @org.junit.Test
     public void test4() {
-        int res = mapper.delete(6408303361833046016L);
+        int res = mapper.delete(6464683977264336896L);
         sqlSession.commit();
-        assert res > 0;
+        logger.info("result:", res > 0);
     }
 }

@@ -1,21 +1,15 @@
-package com.z.mybatis.util;
+package com.zz.mybatis.util;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 
 /**
- * <p>
- * <p>
- * io 关闭
- * </p>
- *
  * @author tao.zeng.
  * @since 2018/1/17.
  */
-public final class IoUtils {
+public class IoUtils {
 
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(IoUtils.class);
 
     private IoUtils() {
     }
@@ -34,7 +28,7 @@ public final class IoUtils {
                     }
                 }
             } catch (IOException e) {
-                log.error("io 关闭异常：{}", e);
+                throw new RuntimeException("io 关闭异常:" + e);
             }
         }
     }

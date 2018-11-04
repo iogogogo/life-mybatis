@@ -1,7 +1,7 @@
-package com.z.mybatis.mapper2;
+package com.zz.mybatis.mapper2;
 
-import com.z.mybatis.entity.Dept;
-import com.z.mybatis.util.BaseMapper;
+import com.zz.mybatis.entity.Dept;
+import com.zz.mybatis.util.BaseMapper;
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -18,7 +18,7 @@ public interface DeptMapper extends BaseMapper<Dept, Long> {
     @Results({
             @Result(property = "deptId", column = "dept_id"),
             @Result(property = "deptName", column = "dept_name"),
-            @Result(many = @Many(select = "com.z.mybatis.mapper.EmployeeMapper.findEmpByDeptId"), column = "dept_id", property = "employees")
+            @Result(many = @Many(select = "com.zz.mybatis.mapper.EmployeeMapper.findEmpByDeptId"), column = "dept_id", property = "employees")
     })
     List<Dept> findAll();
 }

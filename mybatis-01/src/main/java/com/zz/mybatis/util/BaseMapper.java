@@ -1,4 +1,4 @@
-package com.z.mybatis.util;
+package com.zz.mybatis.util;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * @author tao.zeng.
  * @since 2018/4/26.
  */
-public interface BaseMapper<M, PK extends Serializable> {
+public interface BaseMapper<M extends Serializable, PK extends Serializable> {
 
     /**
      * 查询所有数据

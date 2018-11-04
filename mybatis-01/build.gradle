@@ -1,6 +1,5 @@
-group 'com.z.mybatis'
+group 'com.zz.mybatis'
 version '1.0-SNAPSHOT'
 
 dependencies {
-    compileOnly('org.projectlombok:lombok:1.16.20')
 }

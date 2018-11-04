@@ -3,15 +3,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- namespace 指定当前 mapper 和 Mapper对象的映射关系 -->
-<mapper namespace="com.z.mybatis.mapper.DeptMapper">
+<mapper namespace="com.zz.mybatis.mapper.DeptMapper">
 
     <!-- 因为实体对象中的属性名称和数据库字段名称不一样，通过resultMap来进行映射 -->
-    <resultMap id="deptMapper" type="com.z.mybatis.entity.Dept">
+    <resultMap id="deptMapper" type="com.zz.mybatis.entity.Dept">
         <!-- property 实体对象中的属性名称  column 数据库中字段的名称-->
         <id property="deptId" column="dept_id"/>
         <result property="deptName" column="dept_name"/>
         <collection property="employees" column="dept_id"
-                    select="com.z.mybatis.mapper.EmployeeMapper.findEmpByDeptId">
+                    select="com.zz.mybatis.mapper.EmployeeMapper.findEmpByDeptId">
         </collection>
     </resultMap>
 

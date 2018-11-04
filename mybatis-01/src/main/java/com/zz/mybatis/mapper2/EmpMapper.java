@@ -1,7 +1,7 @@
-package com.z.mybatis.mapper2;
+package com.zz.mybatis.mapper2;
 
-import com.z.mybatis.entity.Employee;
-import com.z.mybatis.util.BaseMapper;
+import com.zz.mybatis.entity.Employee;
+import com.zz.mybatis.util.BaseMapper;
 import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -16,7 +16,7 @@ public interface EmpMapper extends BaseMapper<Employee, Long> {
 
     @Select("select * from employee as a,dept as b where a.dept_id = b.dept_id")
     @Results({
-            @Result(one = @One(select = "com.z.mybatis.mapper.DeptMapper.findById"), property = "dept", column = "dept_id")
+            @Result(one = @One(select = "com.zz.mybatis.mapper.DeptMapper.findById"), property = "dept", column = "dept_id")
     })
     List<Employee> findAll();
 }

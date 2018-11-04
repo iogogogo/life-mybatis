@@ -48,9 +48,7 @@ CREATE TABLE `employee` (
   `age` int(11) DEFAULT NULL,
   `birthday` datetime DEFAULT NULL,
   `dept_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_dept_id` (`dept_id`),
-  CONSTRAINT `fk_dept_id` FOREIGN KEY (`dept_id`) REFERENCES `dept` (`dept_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------

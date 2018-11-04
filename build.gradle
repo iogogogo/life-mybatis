@@ -1,19 +1,29 @@
-group 'com.z.mybatis'
-version '1.0-SNAPSHOT'
+group "com.zz.mybatis"
+version "1.0-SNAPSHOT"
+
+buildscript {
+    ext {
+        mybatisVersion = "3.4.6"
+        mysqlVersion = "5.1.47"
+        javaVersion = JavaVersion.VERSION_1_8
+    }
+}
 
 // 所有子项目应用
 subprojects {
 
-    apply plugin: 'java'
+    apply plugin: "java"
 
     repositories {
+        mavenLocal()
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "http://maven.aliyun.com/nexus/content/repositories/jcenter/" }
         mavenCentral()
     }
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = "${javaVersion}"
+    targetCompatibility = "${javaVersion}"
 
-    // 将资源文件打包
     processResources {
         exclude { "**/*.*" }
     }
@@ -27,41 +37,39 @@ subprojects {
         sourceSets*.resources.srcDirs*.each { it.mkdirs() }
     }
 
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
+    // JavaDoc utf8
+    tasks.withType(Javadoc) {
+        options.addStringOption("Xdoclint:none", "-quiet")
+        options.addStringOption("encoding", "UTF-8")
+        options.addStringOption("charSet", "UTF-8")
     }
 
     configurations.all {
         // check for updates every build
-        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+        resolutionStrategy.cacheChangingModulesFor 0, "seconds"
     }
 
     //需要排除的jar
     configurations {
     }
 
-    // java编译的时候缺省状态下会因为中文字符而失败
-    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
-
-    //这里一定得要。在多模块下，不然编译失败，因为不会把信赖模块给打包。
-    jar {
-        enabled = true
-    }
+    //这里一定得要。在多模块下，不然编译失败，因为不会把依赖模块给打包。
+    jar.enabled = true
 
     dependencies {
 
-        compileOnly('org.projectlombok:lombok:1.16.20')
+        compileOnly("org.projectlombok:lombok:1.16.20")
 
-        compile('com.relops:snowflake:1.1')
-        runtime 'mysql:mysql-connector-java:6.0.6'
-        compile 'org.mybatis:mybatis:3.4.6'
+        implementation "ch.qos.logback:logback-classic:1.2.3"
+        
+        runtime "mysql:mysql-connector-java:${mysqlVersion}"
+        implementation "org.mybatis:mybatis:${mybatisVersion}"
 
-        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
-        compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+        implementation "org.apache.commons:commons-lang3:3.7"
 
-        compile 'com.google.code.gson:gson-parent:2.8.2'
-        compile 'com.alibaba:fastjson:1.2.47'
+        implementation "com.google.code.gson:gson-parent:2.8.2"
+        implementation "com.alibaba:fastjson:1.2.47"
 
-        testCompile group: 'junit', name: 'junit', version: '4.12'
+        testCompile "junit:junit:4.12"
     }
 }

@@ -1,7 +1,7 @@
-package com.z.mybatis.mapper;
+package com.zz.mybatis.mapper;
 
-import com.z.mybatis.entity.User;
-import com.z.mybatis.util.BaseMapper;
+import com.zz.mybatis.entity.User;
+import com.zz.mybatis.util.BaseMapper;
 
 /**
  * <p>

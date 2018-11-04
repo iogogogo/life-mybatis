@@ -1,7 +1,7 @@
-package com.z.mybatis.mapper;
+package com.zz.mybatis.mapper;
 
-import com.z.mybatis.entity.Employee;
-import com.z.mybatis.util.BaseMapper;
+import com.zz.mybatis.entity.Employee;
+import com.zz.mybatis.util.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

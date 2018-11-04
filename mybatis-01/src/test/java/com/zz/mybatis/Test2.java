@@ -1,8 +1,8 @@
-package com.z.mybatis.test;
+package com.zz.mybatis;
 
-import com.z.mybatis.entity.Dept;
-import com.z.mybatis.mapper2.DeptMapper;
-import com.z.mybatis.util.SqlSessionFactoryUtil;
+import com.zz.mybatis.entity.Dept;
+import com.zz.mybatis.mapper2.DeptMapper;
+import com.zz.mybatis.util.SqlSessionFactoryUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;

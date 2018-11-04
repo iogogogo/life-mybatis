@@ -1,6 +1,4 @@
-package com.z.mybatis.util;
-
-import com.relops.snowflake.Snowflake;
+package com.zz.mybatis.util;
 
 import java.io.Serializable;
 import java.util.UUID;
