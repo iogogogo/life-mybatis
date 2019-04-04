@@ -1,3 +1,4 @@
 rootProject.name = 'life-mybatis'
 include 'mybatis-01'
+include 'mybatis-002'
 

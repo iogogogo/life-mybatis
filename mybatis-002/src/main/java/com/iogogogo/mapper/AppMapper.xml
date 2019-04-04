@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 指定当前 mapper 和 Mapper对象的映射关系 -->
+<mapper namespace="com.iogogogo.mapper.AppMapper">
+
+    <resultMap id="app_map" type="com.iogogogo.entity.AppEntity">
+        <result column="id" property="id"/>
+        <result column="desc" property="desc"/>
+        <result column="app_key" property="appKey"/>
+        <collection property="deviceList" ofType="com.iogogogo.entity.DeviceEntity">
+            <result column="id" property="id"/>
+            <result column="desc" property="desc"/>
+            <result property="devKey" column="dev_key"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="list" resultMap="app_map">
+        SELECT * from sys_app a
+        inner join sys_relation b on a.app_key=b.app_key
+        inner join sys_device c on b.dev_key=c.dev_key;
+    </select>
+</mapper>
